@@ -1,3 +1,11 @@
+html {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
 .sr-only {
     border: 0 !important;
     clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
@@ -14,7 +22,6 @@
   
 .features {
     display: flex;
-    flex-direction: column;
   }
   
   @media (min-width: 920px) {
@@ -33,7 +40,6 @@
   .feature-item {
     flex: 1;
     padding: 2.5rem;
-    justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,30 +49,10 @@
     color: #222;
     font-size: 1.25rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
   }
    
-  .input-remember {
-    display: flex;
+  .fa-circle-user{
+    height: 20px;
+    margin-right: 5px;
   }
-  
-  .input-remember label {
-    margin-left: 0.25rem;
-  }
-  
-  .input-wrapper {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-bottom: 1rem;
-  }
-  
-  .input-wrapper label {
-    font-weight: bold;
-  }
-  
-  .input-wrapper input {
-    padding: 5px;
-    font-size: 1.2rem;
-  }
-  
