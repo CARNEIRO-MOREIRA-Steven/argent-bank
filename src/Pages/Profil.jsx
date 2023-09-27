@@ -1,12 +1,14 @@
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
+import UserHomePage from "../components/UserHomePage/UserHomePage"
+
 function Profil(){
     return(
         <section>
         <Header />
-    <h1>Profil</h1>
-    <Footer />
-    </section>
+        <UserHomePage />
+        <Footer />
+        </section>
     )
 }
 export default Profil
