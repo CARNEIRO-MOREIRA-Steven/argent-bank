@@ -1,12 +1,13 @@
 .sign-in-button {
     display: block;
-    padding: 8px;
-    font-size: 1.1rem;
+    padding: 10px;
     font-weight: bold;
     margin-top: 1rem;
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;
+    border: none;
+    text-decoration:underline;
   }
   
   .sign-in-content {
@@ -33,15 +34,17 @@
 #input-remember-label {
   margin-left: 0.25rem;
   font-weight: 300;
+  text-align: center;
 }
 
 .input-wrapper {
   display: flex;
   text-align: left;
   margin-bottom: 1rem;
+  justify-content: space-between;
 }
 
-.input-wrapper label {
+.input-wrapper-checkbox,label {
   font-weight: bold;
   display: flex;
   flex-direction: column;
@@ -50,4 +53,17 @@
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
+}
+
+.input-wrapper-checkbox{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  font-weight: 300;
+}
+
+#input-submit{
+  padding: 8px 15px;
+  width: 100%;
 }
