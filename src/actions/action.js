@@ -3,6 +3,7 @@ import axios from 'axios'
 export const LOGIN_USER = "LOGIN_USER";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_FAILURE = "USER_LOGIN_FAILURE";
+export const USER_LOGOUT = "USER_LOGOUT";
 
 export const userLoginSuccess = () => ({
     type: USER_LOGIN_SUCCESS,
@@ -13,6 +14,14 @@ export const userLoginFailure = (error) => ({
     type: USER_LOGIN_FAILURE,
     payload: error,
   });
+
+export const logoutUser = () => {
+  localStorage.removeItem("token");
+  sessionStorage.removeItem("token")
+  return {
+    type: USER_LOGOUT,
+  }
+}
 
 export const loginUser = (email, password, navigate, rememberMe) => {
     return async (dispatch) => {

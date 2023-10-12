@@ -1,9 +1,9 @@
-import { USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE} from '../actions/action';
+import { USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE, USER_LOGOUT} from '../actions/action';
 
 const initialState = {
   loginError: null,
   userProfile: '',
-  userConnected : false,
+  userConnected : Boolean(localStorage.getItem('token') || sessionStorage.getItem('token')),
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,6 +19,10 @@ const userReducer = (state = initialState, action) => {
         ...state,
         loginError: action.payload,
       };
+    case USER_LOGOUT:
+        return {
+            userConnected : false
+        }
     default:
       return state;
   }
