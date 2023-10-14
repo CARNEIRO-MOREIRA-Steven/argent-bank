@@ -2,12 +2,13 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from "../../assets/argentBankLogo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 
 
 import "../Header/Header.css"
 import { logoutUser } from '../../actions/action';
 function Header() {
+    const userProfile = useSelector((state => state.userReducer.userProfile));
     const tokenLocalStorage = localStorage.getItem('token');
     const tokenSessionStorage = sessionStorage.getItem('token');
     const token = tokenLocalStorage || tokenSessionStorage;
@@ -31,7 +32,7 @@ function Header() {
                     <section className="main-nav-item">
                     <Link className="main-nav-item" to='/profil'>    
                     <FontAwesomeIcon icon="fa-solid fa-circle-user" />
-                    <p className='main-nav-username'>Name user</p>
+                    <p className='main-nav-username'>{userProfile.firstName}</p>
                     </Link>
                     <Link className="main-nav-item" onClick={userLogout}> 
                     <FontAwesomeIcon icon="fa-arrow-right-from-bracket" />

@@ -1,10 +1,23 @@
 import "./userHomePage.css"
+import React, {useEffect} from "react"
+import { userProfil } from "../../actions/action"
+import { useDispatch, useSelector } from "react-redux"
 
-function userHomePage(){
+const HomePage = () =>{
+  
+  const userProfile = useSelector((state => state.userReducer.userProfile));
+  let token = localStorage.getItem('token') || sessionStorage.getItem('token')
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if(token){
+    dispatch(userProfil(token));
+    }
+},[dispatch,token]);
+
     return (
-        <main className="main bg-dark">
+        <main className="main bg-dark" onChange={userProfil}>
             <div className="header">
-            <h1>Welcome back<br/>  </h1>   
+            <h1 >Welcome back<br/>{userProfile.firstName} </h1>   
             <button className="edit-button">Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>
@@ -41,4 +54,4 @@ function userHomePage(){
         </main>
     )
 }
-export default userHomePage
+export default HomePage

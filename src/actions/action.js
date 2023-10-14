@@ -1,20 +1,21 @@
 import axios from 'axios'
 
-export const LOGIN_USER = "LOGIN_USER";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_FAILURE = "USER_LOGIN_FAILURE";
 export const USER_LOGOUT = "USER_LOGOUT";
+export const USER_PROFILE = "USER_PROFILE"
 
 export const userLoginSuccess = () => ({
     type: USER_LOGIN_SUCCESS,
   });
 
-  // Action pour gérer l'échec de connexion de l'utilisateur
+//Gérer l'échec de connexion
 export const userLoginFailure = (error) => ({
     type: USER_LOGIN_FAILURE,
     payload: error,
   });
 
+//Gérer la déconnexion
 export const logoutUser = () => {
   localStorage.removeItem("token");
   sessionStorage.removeItem("token")
@@ -23,6 +24,7 @@ export const logoutUser = () => {
   }
 }
 
+//Gérer la connexion
 export const loginUser = (email, password, navigate, rememberMe) => {
     return async (dispatch) => {
       try {
@@ -36,7 +38,6 @@ export const loginUser = (email, password, navigate, rememberMe) => {
   
         if (response.status === 200) {
           const token = response.data.body.token;
-          console.log(token)
           if (rememberMe) {
             localStorage.setItem("token", token);
           } else {
@@ -62,4 +63,31 @@ export const loginUser = (email, password, navigate, rememberMe) => {
       }
     };
   };
-  
+
+//Gérer la récupération profil
+export const userProfil = () => {
+  const token = sessionStorage.getItem('token') || localStorage.getItem('token')
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/v1/user/profile",
+        {},
+        {
+          headers:{
+            Authorization: `Bearer ${token}`
+          },
+        }
+      );
+      if (response.status === 200) {
+        const userProfile = response.data.body;
+        dispatch(({
+          type: USER_PROFILE,
+          payload: userProfile,
+        }));
+      }
+    } catch (error) {
+      console.error('Error:', error);
+       // Ajoutez cette ligne pour déboguer les erreurs
+    }
+  };
+};
