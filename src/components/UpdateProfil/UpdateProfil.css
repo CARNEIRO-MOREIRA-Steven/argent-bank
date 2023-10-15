@@ -1,0 +1,44 @@
+.update_profil{
+    display: flex;
+    flex-direction: column;
+}
+
+#update_profil_input{
+    flex-direction: column;
+}
+
+#update_profil_input label{
+    align-items: center;
+    flex-direction: row;
+    margin: 5px;
+    justify-content: center;
+}
+
+#user_name,#last_name,#first_name{
+    margin-left: 5px;
+    width: 150px;
+}
+
+.update_profil_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#input-submit {
+    display: block;
+    padding: 10px;
+    font-weight: bold;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    width: 150px;
+  }
+
+  #save_cancel_button{
+    display: flex;
+  }

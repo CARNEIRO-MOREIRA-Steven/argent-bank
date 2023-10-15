@@ -1,8 +1,8 @@
 import "./userHomePage.css"
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import { userProfil } from "../../actions/action"
 import { useDispatch, useSelector } from "react-redux"
-
+import UpdateProfil from "../UpdateProfil/UpdateProfil"
 const HomePage = () =>{
   
   const userProfile = useSelector((state => state.userReducer.userProfile));
@@ -14,11 +14,29 @@ const HomePage = () =>{
     }
 },[dispatch,token]);
 
+const [isFormVisible, setIsFormVisible] = useState(false);
+  const userUpdate = (e) => {
+    e.preventDefault();
+    setIsFormVisible(!isFormVisible)
+  }
     return (
         <main className="main bg-dark" onChange={userProfil}>
-            <div className="header">
-            <h1 >Welcome back<br/>{userProfile.firstName} </h1>   
-            <button className="edit-button">Edit Name</button>
+          
+            <div className="banner">
+            {isFormVisible ? null : ( 
+            <div>
+            <h1> Welcome back<br/>{userProfile.firstName} {userProfile.lastName}</h1>   
+            <button className="edit-button" onClick={userUpdate}>Edit Name</button>
+            </div> )} 
+            {isFormVisible && (
+            <div className="update_profil_button">
+            <UpdateProfil />
+            <div id="save_cancel_button">
+            <input id="input-submit" name="submit" type="submit" value="Save" className="save-button" />
+            <input id="input-submit" name="submit" type="submit" value="Cancel" className="cancel-button" onClick={userUpdate}/>
+            </div>
+            </div>)
+            }
             </div>
             <h2 className="sr-only">Accounts</h2>
             <section className="account">
