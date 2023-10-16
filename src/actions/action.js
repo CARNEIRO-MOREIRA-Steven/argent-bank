@@ -3,7 +3,8 @@ import axios from 'axios'
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_FAILURE = "USER_LOGIN_FAILURE";
 export const USER_LOGOUT = "USER_LOGOUT";
-export const USER_PROFILE = "USER_PROFILE"
+export const USER_PROFILE = "USER_PROFILE";
+export const UPDATE_PROFILE = "UPDATE_PROFILE"
 
 export const userLoginSuccess = () => ({
     type: USER_LOGIN_SUCCESS,
@@ -91,3 +92,33 @@ export const userProfil = () => {
     }
   };
 };
+
+//Gérer la modification de l'username
+export const updateProfil = (userName) => {
+  const token = sessionStorage.getItem('token') || localStorage.getItem('token')
+  return async (dispatch) => {
+    try{
+       const response = await axios.put(
+      "http://localhost:3001/api/v1/user/profile",
+      {userName : userName,},
+      {
+        headers:{
+          Authorization: `Bearer ${token}`
+        },
+      },
+      
+    );
+    if (response.status === 200){
+      const userProfile = response.data.body;
+      dispatch (({
+        type : UPDATE_PROFILE,
+        payload : userProfile,
+      }));
+    }
+    }catch (error){
+      console.log(error)
+    }
+  }
+
+}
+

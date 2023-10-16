@@ -1,10 +1,11 @@
 import "./userHomePage.css"
+import UpdateForm from "../UpdateProfil/UpdateProfil"
 import React, {useEffect, useState} from "react"
 import { userProfil } from "../../actions/action"
 import { useDispatch, useSelector } from "react-redux"
-import UpdateProfil from "../UpdateProfil/UpdateProfil"
+
+
 const HomePage = () =>{
-  
   const userProfile = useSelector((state => state.userReducer.userProfile));
   let token = localStorage.getItem('token') || sessionStorage.getItem('token')
   const dispatch = useDispatch();
@@ -15,13 +16,15 @@ const HomePage = () =>{
 },[dispatch,token]);
 
 const [isFormVisible, setIsFormVisible] = useState(false);
+
   const userUpdate = (e) => {
+    if(e){
     e.preventDefault();
     setIsFormVisible(!isFormVisible)
   }
+}
     return (
         <main className="main bg-dark" onChange={userProfil}>
-          
             <div className="banner">
             {isFormVisible ? null : ( 
             <div>
@@ -30,11 +33,7 @@ const [isFormVisible, setIsFormVisible] = useState(false);
             </div> )} 
             {isFormVisible && (
             <div className="update_profil_button">
-            <UpdateProfil />
-            <div id="save_cancel_button">
-            <input id="input-submit" name="submit" type="submit" value="Save" className="save-button" />
-            <input id="input-submit" name="submit" type="submit" value="Cancel" className="cancel-button" onClick={userUpdate}/>
-            </div>
+            <UpdateForm onCancel={userUpdate} />
             </div>)
             }
             </div>
