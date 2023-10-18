@@ -5,6 +5,7 @@ import Home from './Pages/Home.jsx'
 import Connect from './Pages/Connect.jsx'
 import Profil from './Pages/Profil.jsx'
 import'./fontawesome.js';
+import PrivateRoute from './PrivateRoute.js';
 
 //REDUX
 import { Provider } from "react-redux";
@@ -24,8 +25,10 @@ root.render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/se_connecter' element={<Connect />} />
-        <Route path='/profil' element={<Profil />} />
-      </Routes>
+        <Route element={<PrivateRoute />}>
+          <Route path='/profil' element={<Profil />} />
+        </Route>      
+        </Routes>
     </Router>
   </React.StrictMode>
   </Provider>
