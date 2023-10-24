@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Logo from "../../assets/argentBankLogo.png";
+import Logo from "../../assets/argentBankLogo.webp";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector} from 'react-redux';
 

@@ -1,9 +1,9 @@
 import React from 'react';
-import BannerImg from "../../assets/bank-tree.jpeg"
+import BannerImg from "../../assets/bank-tree.webp"
 import "./Banner.css"
-import Money from "../../assets/icon-money.png"
-import Chat from "../../assets/icon-chat.png"
-import Secur from "../../assets/icon-security.png"
+import Money from "../../assets/icon-money.webp"
+import Chat from "../../assets/icon-chat.webp"
+import Secur from "../../assets/icon-security.webp"
 
 
 function Banner (){
